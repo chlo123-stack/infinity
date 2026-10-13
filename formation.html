@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFINITY TECH - Développement Web, Sites Vitrines & E-commerce</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg, #1a0b2e, #4f46e5);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    width:100%;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background: linear-gradient(135deg, #1a0b2e, #4f46e5);
+    z-index:1000;
+}
+
+nav a{
+    color:white;
+    margin-left:80px;
+    text-decoration:none;
+    transition:0.3s;
+    
+}
+
+nav a:hover{
+    color:#20dbe9;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:80px;
+    height:70px;
+    object-fit:cover;
+     margin-right:10px;
+}
+
+.logo span{
+    font-weight:bold;
+}
+
+/* SECTION */
+section{
+    padding:100px 10%;
+    text-align:center;
+}
+
+.title{
+    font-size:50px;
+    margin-bottom:20px;
+    margin-top: 20px;
+}
+
+.subtitle{
+    max-width:600px;
+    margin:auto;
+    opacity:0.7;
+    margin-bottom:60px;
+}
+
+/* GRID */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    padding:30px;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+
+    transform:translateY(60px);
+    opacity:0;
+    transition:0.6s;
+}
+
+.card.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.card:hover{
+    transform:translateY(-12px) scale(1.05);
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* FOND */
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#4f46e5,#06b6d4);
+    transform:translateY(100%);
+    transition:0.5s;
+    z-index:0;
+}
+
+.card:hover::before{
+    transform:translateY(0);
+}
+
+.card *{
+    position:relative;
+    z-index:2;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    opacity:0.7;
+    font-size:14px;
+}
+
+.card span{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 12px;
+    background:#20dbe9;
+    border-radius:10px;
+    font-size:12px;
+}
+
+.price{
+    margin-top:10px;
+    font-weight:bold;
+    color:#20dbe9;
+}
+
+/* BOUTONS */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    border-radius:25px;
+    background:#20dbe9;
+    color:#0f172a;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+}
+
+/* WHY SECTION */
+.why{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.why-box{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.5s;
+}
+
+.why-box.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ANIM */
+.fade{
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.6s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.footer{
+    background: linear-gradient(135deg, #0f172a, #1a0b2e);
+    color: white;
+    padding: 60px 10% 20px;
+    margin-top: 80px;
+}
+.socials a{
+    display: inline-block;
+    margin: 8px 10px 8px 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+/* layout */
+.footer-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+/* titres */
+.footer-box h3,
+.footer-box h4{
+    margin-bottom: 15px;
+    color: #20dbe9;
+}
+
+/* texte */
+.footer-box p{
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* liens */
+.footer-box a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.footer-box a:hover{
+    opacity: 1;
+    color: #20dbe9;
+    transform: translateX(5px);
+}
+
+/* bas footer */
+.footer-bottom{
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.6;
+}
+.whatsapp-btn{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    background: #25D366;
+    color: white;
+
+    padding: 14px 18px;
+    border-radius: 50px;
+
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 9999;
+
+    /* animation douce */
+    animation: waPulse 2s infinite;
+    transition: 0.3s;
+}
+
+/* hover clean */
+.whatsapp-btn:hover{
+    transform: scale(1.08);
+    background: #1ebe5d;
+}
+.features{
+    list-style: none;
+    padding: 0;
+}
+.card span{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+
+    background: linear-gradient(135deg, #20dbe9, #06b6d4);
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    color: #0f172a;
+    letter-spacing: 1px;
+}
+
+
+/* animation pulse */
+@keyframes waPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">
+        <img src="WhatsApp Image 2026-04-14 at 18.10.57.jpeg">
+        <span>INFINITY TECH</span>
+    </div>
+
+    <div>
+        <a href="index.html">Accueil</a>
+        <a href="formation.html">Formations</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+</head>
+
+<body>
+
+<!-- FORMATIONS -->
+<section class="defi">
+    <h1 class="title fade">Nos formations</h1>
+    <p class="subtitle fade">
+        Développez des compétences solides grâce à des formations pratiques orientées vers l’emploi.
+    </p>
+
+    <div class="cards">
+    
+    <div class="card">
+        <h3>Pack Développement Web Complet</h3>
+
+        <p>
+            Devenez développeur web en maîtrisant toutes les bases nécessaires pour créer 
+            des sites et applications modernes.
+        </p>
+
+        <span>Formation complète</span>
+
+        <ul class="features">
+            <li>HTML / CSS</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+            <li>MySQL</li>
+        </ul>
+
+        <div class="price">120 000 FCFA - 6 mois</div>
+
+        <a href="https://wa.me/22957196577?text=Bonjour%20je%20veux%20m'inscrire%20au%20pack%20complet" class="btn">
+            S'inscrire
+        </a>
+    </div>
+
+
+    <!-- WORDPRESS -->
+    <div class="card">
+        <h3>Formation WordPress</h3>
+
+        <p>
+            Apprenez à créer rapidement des sites professionnels sans coder 
+            grâce à WordPress.
+        </p>
+
+        <span>CMS</span>
+
+        <ul class="features">
+            <li>Création de site</li>
+            <li>Thèmes & plugins</li>
+            <li>Gestion de contenu</li>
+            <li>Mise en ligne</li>
+        </ul>
+
+        <div class="price">60 000 FCFA -    1 mois et demi</div>
+
+        <a href="https://wa.me/22957196577?text=Bonjour%20je%20veux%20m'inscrire%20a%20la%20formation%20WordPress" class="btn">
+            S'inscrire
+        </a>
+    </div>
+
+</div>
+</section>
+
+<!-- WHY -->
+<section>
+    <h2 class="title fade">Pourquoi choisir nos formations ?</h2>
+
+    <div class="why">
+        <div class="why-box">Formations 100% pratiques</div>
+        <div class="why-box">Encadrement professionnel</div>
+        <div class="why-box">Projets réels</div>
+        <div class="why-box">Suivi personnalisé</div>
+    </div>
+</section>
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>INFINITY TECH</h3>
+            <p>Nous créons des solutions web modernes et formons les développeurs de demain.</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>Liens rapides</h4>
+            <a href="index.html">Accueil</a>
+            <a href="competence.html">Compétences</a>
+            <a href="formation.html">Formations</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer-box">
+            <h4>Contact</h4>
+            <p>Email : rolandakpah@gmail.com</p>
+            <p>Tél : +229 01 57 19 65 77</p>
+            <p>Ab-Calavi</p>
+        </div>
+
+        <div class="footer-box">
+    <h4>Réseaux sociaux</h4>
+
+    <div class="socials">
+        <a href="https://www.facebook.com/infinitytech13">Facebook</a>
+        <a href="https://www.instagram.com/rolandakpah/">Instagram</a>
+        <a href="https://www.tiktok.com/@infinitytech13">TikTok</a>
+        <a href="https://www.linkedin.com/in/roland-akpah-b7419b267/">LinkedIn</a>
+    </div>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 INFINITY TECH - Tous droits réservés</p>
+    </div>
+</footer>
+
+
+<a href="https://wa.me/+22957196577" class="whatsapp-btn" target="_blank">
+    WhatsApp
+</a>
+
+<script>
+const elements = document.querySelectorAll('.card, .why-box, .testimonial, .fade');
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry, index)=>{
+        if(entry.isIntersecting){
+            setTimeout(()=>{
+                entry.target.classList.add('show');
+            }, index * 100);
+        }
+    });
+},{ threshold:0.2 });
+
+elements.forEach(el=>{
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>
